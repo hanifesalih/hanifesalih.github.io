@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>DYNAMIC CONTENT</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <style>
+            #outer{
+                position: absolute;
+                top:45%;
+                left: 60;
+                background-color: lightblue;
+            }
+            #inner{
+                clear:both;
+                vertical-align: middle;
+                text-align: center;
+                background-color: blue;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="outer">
+            <span id="inner">
+                <a style="color: white;" href="http://www.hello.com" target="_blank"> hello </a>
+            </span>
+        </div>
+        <script>
+        $('#inner id').hover(
+                function() {
+                    $(this).css("background-color","green"); 
+                },
+                function() {
+                    $(this).css("background-color","blue");
+                }
+                );     
+        </script>
+    </body>
+</html>
