@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script> 
+          function factorial(num) {
+              var res = 1;
+              for(var i=2; i<=num; i++) {
+                  res= res * i; //res *=i;
+              }
+             return res;
+                  }  
+                  function calculate() {
+                      var innum=$('#num').val();
+                      var res= factorial(innum);
+                      $('#res').val(res);
+                  }
+        </script>
+    </head>
+    <body>
+        <div>
+            <form>
+                <input type="text" id="num" value="5"/>
+                <input type="text" id="res" placeholder="the result"/>
+                <input type="button"
+                       
+                       onclick="calculate();"/>
+        </form>
+      </div>
+    </body>
+</html>
