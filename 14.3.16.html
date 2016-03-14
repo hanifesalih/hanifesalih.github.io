@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form>
+            <input type="text" id="input1">
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="text" id="input2">
+            <input type="button" id="calc" value="calc" onclick="calculate();">
+            <input type="text" id="output" disabled>
+            <br>
+        </form>
+        <div id="error"></div>
+        <script>
+            var in1 =parseInt($('#input1').val());
+            var in2 =parseInt( $('#input2').val());
+            function calculate() {
+                checkInput();
+            }
+            function checkInput1() {
+                if(isNaN(in1) || isNaN(in2)) {
+                    return false;
+                    }
+                        if(isNaN(in2))
+                    return false;
+                 return true;
+            }
+             function checkInput2() {
+                if(isNaN(in1))
+                    return false,
+                        if(isNaN(in2))
+                    return false;
+                 return true;
+            }
+            </script>
+    </body>
+</html>
