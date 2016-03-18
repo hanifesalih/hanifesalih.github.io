@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>logic</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script> 
+        function orwithnands(a,b) {
+        if(((!a) && (!b)))  
+        return false;
+        return true;
+        }
+        $().ready(function() {
+         var r= orwithnands(false,false);
+        $('#res').append("0,0 -> " + r + "<br/>");
+        var r= orwithnands(false,true);
+        $('#res').append("0,1 -> " + r + "<br/>");
+        var r= orwithnands(true,false);
+        $('#res').append("1,0 -> " + r + "<br/>");
+        var r= orwithnands(true,true);
+        $('#res').append("1,1 -> " + r + "<br/>");
+    });
+        </script>
+    </head>
+    <body>
+        <div id="res">
+            
+        </div>
+      
+    </body>
+</html>
