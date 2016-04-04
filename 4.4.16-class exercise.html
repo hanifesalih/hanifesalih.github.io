@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>4.4.16 class exercise</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <style>
+            .box{
+                height: 35px;
+                width: 60px;
+            }
+            #d1
+            {
+                position: absolute;
+                top:40%;
+                right: 40%;
+                left: 40%;
+                height: 80px;
+                width: 90px;
+                background-color: aqua;
+            }
+            #d2
+            {   height: 60px;
+                width: 60px;
+                position: absolute;
+                top: 50%;
+                right: 40%;
+                left: 50%;
+                background-color: orange;
+            }
+        </style>
+        <script type="text/javascript">
+               $(document).ready(function() {
+    $( "#d2" ).draggable();
+    $( "#d1").droppable({
+    drop: function(){
+        $( "#d2" ).draggable("disable");
+        $( "#d1" ).draggable("disable");
+        $( "#d2" ).css("color", "purple");
+        $( "#d1" ).css("color", "blue");
+    }
+});
+  });
+        </script>
+    </head>
+    <body>
+        <div id="d1" class="box"> </div>
+        <div id="d2" class="box"> </div>
+    </body>
+</html>
