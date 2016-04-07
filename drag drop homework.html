@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+ <html>
+     <head>  
+         <title>Drag n Drop</title>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+         <style>
+             #target{
+                 position: absolute;
+                 top: 10px;
+                 left:10px;
+                 width: 300px;
+                 height: 300px;
+                 background-color: blue;
+             }
+             #arrow{
+                 position: absolute;
+                 top: 200px;
+                 left: 500px;
+                 width: 100px;
+                 width: 100px;
+                 background-color: red;
+             }
+             ul
+             {
+                 list-style-type: none;
+             }
+         </style>
+         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+ 
+ 
+ 
+         <script type="text/javascript">
+ 
+             $(document).ready(function () {
+                 $("#arrow").draggable();
+                 $("#target").droppable(
+                         {
+                             drop: function () {
+                                 $("#arrow").draggable("disable");
+                                 $("#target").draggable("disable");
+                                 $("#target").css("background-color", "red").html("");
+                                 $("#arrow").css("background-color", "red").html("");
+                             }
+                         }
+                 );
+             });
+ 
+         </script>
+ 
+     </head>
+     <body>
+         <div>
+             <ul id="numName">
+                 <li id="t1">eins</li>
+                 <li id="t2">zwei</li>
+                 <li id="t3">drei</li>
+                 <li id="t4">vier</li>
+                 <li id="t5">fünf</li>
+                 <li id="t6">sechs</li>
+                 <li id="t7">sieben</li>
+                 <li id="t8">acht</li>
+                 <li id="t9">neun</li>
+                 <li id="t10">zehn</li>
+             </ul>
+             <ul id="numNumeric">
+                 <li id="d1">1</li>
+                 <li id="d2">2</li>
+                 <li id="d3">3</li>
+                 <li id="d4">4</li>
+                 <li id="d5">5</li>
+                 <li id="d6">6</li>
+                 <li id="d7">7</li>
+                 <li id="d8">8</li>
+                 <li id="d9">9</li>
+                 <li id="d10">10</li>
+             </ul>
+         </div>
+         <script type="text/javascript">
+ 
+             $("#arrow").draggable();
+             $("#target").draggable();
+             $("#d1").draggable();
+             $("#d2").draggable();
+             $("#d3").draggable();
+             $("#d4").draggable();
+             $("#d5").draggable();
+             $("#d6").draggable();
+             $("#d7").draggable();
+             $("#d8").draggable();
+             $("#d9").draggable();
+             $("#d10").draggable();
+             $("#t1").droppable({drop: function (event, ui) {
+                     var di = ui.draggable.attr("id");
+                     if (di === "d1") 
+                     for (di= 0; i<$(".di").length; i++)
+                 {
+                         $("#di").draggable("disable");
+                         $("#t1").html("&nbsp;").css("background-color", "green");
+                     }
+                 }});
+             
+             $.fn.randomize = function (selector) {
+                 var $elems = selector ? $(this).find(selector) : $(this).children(),
+                         $parents = $elems.parent();
+ 
+                 $parents.each(function () {
+                     $(this).children(selector).sort(function () {
+                         return Math.round(Math.random()) - 0.5;
+                       
+                     }).detach().appendTo(this);
+                 });
+ 
+                 return this;
+             };
+ 
+             $('ul').randomize();
+         </script>        
+     </body>
+ </html>
