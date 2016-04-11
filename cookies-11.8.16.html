@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <title>Game 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <style>
+            ul {
+                list-style-type: none;
+            }
+            #order {
+                display: none;
+            }
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js.cookies.js"> </script>
+    </head>
+    <body>
+        <div>
+            <ul id="numName"></ul>
+            <ul id="numNumeric"></ul>
+            <ul id="order"></ul>
+        </div>
+        <script type="text/javascript">
+            var numText = ['null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn'];
+            //var numText = ['null', 'eins', 'zwei'];
+            var numbers = [];
+            var ulText = $('#numName');
+            var ulNum = $('#numNumeric');
+            var dimx = $('body').width();
+            var dimy = $('body').height();
+            var numbersCookie= Cookies.get('numbers');
+            for(var i = 0; i < numText.length; i++){
+                var number= {
+                    word: numText[i],
+                    digit: i,
+                    score: 0
+                };
+                {         
+        numbers.push(number);
+    }
+                ulText.append('<li id="t' + numbers[i].digit + '">' + numbers[i].word + '</li>');
+                ulNum.append('<li id="n' + numbers[i].digit + '">' + numbers[i].digit + '</li>');
+                if (numbers[i].placed) {
+                    $("#n" + i).hide();
+                }
+            }
+            var hidden = 0;
+            for(var i = 0; i < numText.length; i++){
+                $("#n" + i).data("index", {index: i});
+                $("#t" + i).data("index", {index: i});
+                $("#n" + i).draggable();
+                $("#t" + i).droppable({drop: function (event, ui) {
+                    var ni = ui.draggable.attr("id");
+                    var ti = this.id;
+                    var niElem = $('#' + ni);
+                    var tiElem = $('#' + ti);
+                    if(niElem.data("index").index === tiElem.data("index").index){
+                        //correct
+                        niElem.draggable("disable");
+                        niElem.css("display", "none");
+                        hidden++;
+//                        var hidden = 0;
+//                        for(var j = 0; j < numText.length; j++){
+//                            if($('#n' + j).css("display") === "none")
+//                                hidden++;
+//                        }
+                        if(hidden === numText.length){
+//                            alert("done");
+                            $('ul').randomize();
+                            $('#numName').sortable({
+                                start: function(event, ui){
+//                                    var startPos = ui.item.index();
+//                                    ui.item.data('startPos', startPos);
+                                },
+                                update: function(event, ui){
+//                                    var startPos = ui.item.data('startPos');
+//                                    var endPos = ui.item.index();
+                                    var ordered = 0;
+                                    for(var j = 0; j < numText.length; j++){
+                                        if($('#t' + j).index() == j)
+                                            ordered++;
+                                    }
+                                    if(ordered == numText.length)
+                                        alert("done");
+                                }
+                            });
+                        }
+                    } else{
+                        //wrong
+                        var left = Math.floor((Math.random() * (dimx - 20)) + 10);
+                        var top = Math.floor((Math.random() * (dimy - 20)) + 10);
+                        niElem.css("left", left+"px"); 
+                        niElem.css("top", top+"px");
+                        numbers[niElem.data("index").index].score++;
+                        var score=numbers[niElem.data("index").index].score;
+                    if(score>1)
+                        alert("come on try harder you were mistaken" + score +  "times");
+                    }
+                    Cookies.set('numbers', numbers, {expires: 128});
+                }});
+        }
+            $.fn.randomize = function (selector) {
+                var $elems = selector ? $(this).find(selector) : $(this).children(),
+                        $parents = $elems.parent();
+                $parents.each(function () {
+                    $(this).children(selector).sort(function () {
+                        return Math.round(Math.random()) - 0.5;
+                        // }). remove().appendTo(this); // 2014-05-24: Removed `random` but leaving for reference. See notes under 'ANOTHER EDIT'
+                    }).detach().appendTo(this);
+                });
+                return this;
+            };
+            $('ul').randomize();
+        </script>        
+    </body>
+</html>
