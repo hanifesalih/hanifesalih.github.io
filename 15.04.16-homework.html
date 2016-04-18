@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <title>Game 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <style>
+            ul {
+                list-style-type: none;
+            }
+            #order {
+                display: none;
+            }
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js.cookie.js"></script>
+        <script type="text/javascript" src="15.04.16-homework.js"></script>
+        <script>
+            var reset = function () {
+                Cookies.remove("numbers");
+                Cookies.remove("numCorrect");
+                window.location.reload();
+            }
+        </script>
+    </head>
+    <body>  
+        <div>
+
+                        <ul id="numName"></ul>
+                        <ul id="numNumeric"></ul>
+                        <ul id="order"></ul>
+                        <button id="reset" onclick="reset();">Reset</button>
+
+
+
+
+        </div>
+
+        <div id="timer">
+        </div>
+    
+    <div id="myScore"></div>
+        <script type="text/javascript">
+            $('document').ready(function () {
+                var numCookie = Cookies.getJSON('numbers');
+                var numCorrect = Cookies.get('numCorrect');
+                var numbers = new Numbers(numCookie, numCorrect);
+                console.log(numbers);
+                numbers.initGame;
+                $('ul').randomize();
+                var secLeft = 30;
+            });
+          
+            $.fn.randomize = function (selector) {
+                var $elems = selector ? $(this).find(selector) : $(this).children(),
+                        $parents = $elems.parent();
+                $parents.each(function () {
+                    $(this).children(selector).sort(function () {
+                        return Math.round(Math.random()) - 0.5;
+                    }).detach().appendTo(this);
+                });
+                return this;
+            };
+        </script>        
+    </body>
+</html>
